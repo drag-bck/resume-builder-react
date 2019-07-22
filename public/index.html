@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./j/location.js"></script>
+  </head>
+  <body>
+    <div class="base">
+        <!--logo and already a user-->
+        <div> 
+            <div class='logo generic-margin'>
+                <img src="./i/logo.gif">
+            </div>
+            <div class='already-member generic-margin'>
+                <pre>Already a member? <a href='https://www.firstnaukri.com/freshersmnj/mynaukri.php/Home/view'>Click here</a> to login</pre>
+            </div>
+        </div>
+        <!--yellow box-->
+        <div class='yellow-box generic-margin'>
+            <p>Create professional resume in minutes and grab employers’ attention, Free Resume Maker!</p>
+        </div>
+        <!--main content div -->
+        <div class='main-div generic-margin'>
+            <!--main form-->
+            <div clas='main-form'>
+                <!--Login information panel-->
+                <div class='solid-border'>
+                    <h4>Login Details</h4>
+                    <hr class='hr-solid'/>
+                    <div>
+                        <label for='email-id'>Your Email:</label>
+                        <input id='email' class='email-id' type='email' name='email-id' onchange="emailChange()">
+                    </div>
+                    <div>
+                        <label for="passwd">Password:</label>
+                        <input id='passwd' class="passwd" type="password" name="password">
+                        <br>
+                        <label for="cpasswd">Confirm Password:</label>
+                        <input id='cpasswd' class="cpasswd" type="password" name="cpassword">
+                    </div>
+                </div>
+                <!--Education level-->
+                <div class='solid-border'>
+                    <h4>Education:</h4>
+                    <hr class='hr-solid'/>
+                    <label for="highest_degree">Highest Degree:</label>
+                    <select class="highest_degree" id='education-level'  onchange="qualificationChange()">
+                        <option value="1">Graduation / Bachelors Degree or Equivilant</option>
+                        <option value="2">Post Graduation / Masters Degree or Equivilant</option>
+                        <option value="3">Doctorate</option>
+                    </select>
+                    <p class='p-instruction'>You may also enter the degree that you are currently pursuing</p>
+                </div>
+                <p class='p-instruction'>Enter your Qualfication and marks.</p>
+                <!--Doctorate-->
+                <div id="doc123" class='doctorate solid-border'>
+                    <p class='p-qualificaton'>Degree: Doctorate</p>  
+                    <div class='in-line'>                 
+                        <label for="study_type_doc">Type:</label><br>
+                        <form  id='study_type_doc' class="study_type_doc in-line" onchange="doctorateTypeChange()">
+                            <label class="rb-container">
+                            <input type="radio" checked="checked" name="radio" id="fulltime_doc">Full Time
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="parttime_doc">Part Time
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="correspondence_doc">Correspondence
+                            <span class="checkmark"></span>
+                            </label>
+                            <!--
+                            <input type="radio" name="Study Type" value="Full Time" unchecked>Full Time<notb/>
+                            <input type="radio" name="Study Type" value="Part Time" unchecked>Part Time<notb/>
+                            <input type="radio" name="Study Type" value="Correspondence" unchecked>Correspondence<br>
+                            -->
+                        </form>
+                    </div>
+                    <div>
+                        <label for="college_doc">College/Institute, City:</label>
+                        <input id="college_doc" class="college_doc" type="text" name="College/Institute, City" onchange="doctorateCollegeChange()"><br>                         
+                        <p class='p-instruction'>Start typing few words of institute name to select from the suggestions.</p>
+                        <!--TODO: Add auto suggest to collage name input field-->
+                    </div>
+                    <div>
+                        <label for="doc_type">Courses:</label>
+                        <select id='doc_type' class="doc_type" onchange="doctorateCourseChange()">  
+                            <option value="" selected>Select Course</option>
+                            <option value="Ph.D/Doctorate">Ph.D/Doctorate</option>
+                            <option value="MPHIL">MPHIL</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for='specilization-doctorate'>Specilization:</label>
+                        <select id='sp_doc' class='specilization-doctorate' onchange="doctorateSpecilizationChange()">
+                            <option value='' name=''>Select</option>
+                            <option value='Medicine' name=''>Medicine</option>
+                            <option value='Machanical' name=''>Machanical</option>
+                            <option value='Information Technology' name=''>Information Technology</option>
+                            <!--2. TODO: Add specilaziation from js-->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="doctorate-time">Year of Passing:</label>
+                        <div class='doctorate-time in-line'>
+                            <select id="doc_time_year" onchange="monthofDoctorateCompleteChange()">
+                                <option value="" selected>Month</option>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+                            <select id="doc_time_month" onchange="yearofDoctorateCompleteChange()">
+                                <option value="" selected>Year</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+                        <p class='p-instruction'>If pursuing enter expected date of graduation. </p>
+                    </div>
+                    <div>
+                        <label for="grading_scheme_doc">Grading System:</label>
+                        <select id="grad_sch_doc" class="grading_scheme_doc">
+                            <option value="" selected>Select</option>
+                            <option value="Scale 10 Grading System">Scale 10 Grading System</option>
+                            <option value="Scale 4 Grading System">Scale 4 Grading System</option>
+                            <option value="%Marks of 100 Maximum">%Marks of 100 Maximum</option>
+                            <option value="Course Requires a Pass">Course Requires a Pass</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for='doctorate-marks'>Marks/Grade:</label>
+                        <input  id="doc_marks" type='number' class='doctorate-marks' step='0.0001' onchange="gradeMarksDocChange()">
+                    </div>
+                    <div>
+                        <label for="achievement_doc">Academic Achievements:</label>
+                        <select id="ach_doc" class="achievement_doc" onchange="academicAchievementinDoctorateChange()">
+                            <option value="" selected>Select</option>
+                            <option value="College Topper">College Topper</option>
+                            <option value="Department Topper">Department Topper</option>
+                            <option value="School Topper">School Topper</option>
+                            <option value="Top 3 in Class">Top 3 in Class</option>
+                            <option value="Top 10 in Class">Top 10 in Class</option>
+                            <option value="Gold Medalist">Gold Medalist</option>
+                            <option value="Recieved Scholarship">Recieved Scholarship</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class='hr-dashed'/>
+                <!--Post graduation-->
+                <div class='pg solid-border' id='pg'>
+                    <p class='p-qualificaton'>Degree: Post Graduation / Masters Degree or Equivalent</p>
+                    <div>
+                        <label for="study_type_pg">Type:</label><br>
+                            <form class="study_type_pg in-line" onchange="pgTypeChange()">
+                                <label class="rb-container">
+                                <input type="radio" checked="checked" name="radio" id="fulltime_pg">FullTime
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="rb-container">
+                                <input type="radio" name="radio" id="parttime_pg">Part Time
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="rb-container">
+                                <input type="radio" name="radio" id="correspondence_pg">Correspondence
+                                <span class="checkmark"></span>
+                                </label>
+                                <!--
+                                <input type="radio" name="PG Type" value="Full Time" unchecked>Full Time
+                                <input type="radio" name="PG Type" value="Part Time" unchecked>Part Time
+                                <input type="radio" name="PG Type" value="Correspondence" unchecked>Correspondence<br>
+                                -->
+                            </form>
+                    </div>
+                    <div>
+                        <label for="college_pg">College/Institute, City:</label>
+                        <input id="college_pg" class="college_pg" type="text" name="College/Institute, City" onchange="pgCollegeChange()"><br>              
+                        <p class='p-instruction'>Start typing few words of institute name to select from the suggestions.</p>
+                        <!--TODO: Add auto suggest to collage name input field-->
+                    </div>
+                    <div>
+                        <label for="pg_type">Course:</label>
+                        <select class="pg_type" id="pg_type" onchange="pgCourseChange()">
+                            <option value="" selected>Select Course</option>
+                            <option value="CA">CA</option>
+                            <option value="CS">CS</option>
+                            <option value="ICWA">ICWA</option>
+                            <option value="LLM">LLM</option>
+                            <option value="M.A.">M.A.</option>
+                            <option value="M.Arch.">M.Arch.</option>
+                            <option value="M.Com">M.Com.</option>
+                            <option value="M.D.">M.D.</option>
+                            <option value="M.Des">M.Des</option>
+                            <option value="M.E./M.Tech">M.E./M.Tech</option>
+                            <option value="M.Ed">M.Ed</option>
+                            <option value="M.Ekistics">M.Ekistics</option>
+                            <option value="M.Pharma">M.Pharma</option>
+                            <option value="M.Phil">M.Phil</option>
+                            <option value="M.Sc">M.Sc</option>
+                            <option value="M.Tourism">M.Tourism</option>
+                            <option value="MBA/PGDM/MMS">MBA/PGDM/MMS</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MDS">MDS</option>
+                            <option value="MFA">MFA</option>
+                            <option value="MHM">MHM</option>
+                            <option value="MJMC">MJMC</option>
+                            <option value="MVSc">MVSc</option>                        
+                            <option value="PG Diploma">PG Diploma</option>
+                            <option value="MBE">MBE</option>
+                            <option value="MSW">MSW</option>
+                            <option value="MCM">MCM</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for='specilization-pg'>Specilization:</label>
+                        <select class='specilization-pg' id="sp_pg" onchange="pgSpecilizationChange()">
+                            <option value='' name='todo'>Select</option>
+                            <option value='Medicine' name=''>Medicine</option>
+                            <option value='Machanical' name=''>Machanical</option>
+                            <option value='Information Technology' name=''>Information Technology</option>
+                            <!--2. TODO Specilization data from backend-->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="pg-time">Year of Passing:</label>
+                        <div class='pg-time in-line'>
+                            <select id="pg_time_year" onchange="monthofPGCompleteChange()">
+                                <option value="" selected>Month</option>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+                            <select id="pg_time_month" onchange="yearofPGCompleteChange()">
+                                <option value="" selected>Year</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+                        <p class='p-instruction'>If pursuing enter expected date of graduation. </p>
+                    </div>
+                    <div>
+                        <label for="grading_scheme_pg">Grading System:</label>
+                        <select id="grad_sch_pg" >
+                            <option value="Scale 10 Grading System">Scale 10 Grading System</option>
+                            <option value="Scale 4 Grading System">Scale 4 Grading System</option>
+                            <option value="%Marks of 100 Maximum">%Marks of 100 Maximum</option>
+                            <option value="Course Requires a Pass">Course Requires a Pass</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="marks_pg" onchange="gradeMarksPGChange()">Grade/Marks:</label>
+                        <input id="pg_marks" class="marks_pg" type="number" step="0.0001" min="0" max=10 onchange="gradeMarksPGChange()">
+                    </div>
+                    <div>
+                        <label for="achievement_pg">Academic Achievements:</label>
+                        <select id="ach_pg" class="achievement_pg" onchange="academicAchievementinPGChange()">
+                            <option value="" selected>Select</option>
+                            <option value="College Topper">College Topper</option>
+                            <option value="Department Topper">Department Topper</option>                    
+                            <option value="School Topper">School Topper</option>
+                            <option value="Top 3 in Class">Top 3 in Class</option>
+                            <option value="Top 10 in Class">Top 10 in Class</option>
+                            <option value="Gold Medalist">Gold Medalist</option>
+                            <option value="Recieved Scholarship">Recieved Scholarship</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class='hr-dashed'/>
+                
+                <!--Under Graduation-->
+                <div class='ug solid-border' id='ug'>
+                    <p class='p-qualificaton'>Degree: Graduation / Bachelors Degree or Equivalent</p>
+                    <div>
+                        <label for="study_type_ug">Type:</label><br>
+                        <form class="study_type_ug in-line" onchange="ugTypeChange()">
+                            <label class="rb-container">
+                            <input type="radio" checked="checked" name="radio" id="fulltime_ug">FullTime
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="parttime_ug">Part Time
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="correspondence_ug">Correspondence
+                            <span class="checkmark"></span>
+                            </label>
+                            <!--
+                            <input type="radio" name="PG Type" value="Full Time" unchecked>Full Time
+                            <input type="radio" name="PG Type" value="Part Time" unchecked>Part Time
+                            <input type="radio" name="PG Type" value="Correspondence" unchecked>Correspondence<br>
+                            -->
+                        </form>
+                    </div>
+                    <div>
+                        <label for="college_ug">College/Institute, City:</label>
+                        <input id="college_ug" class="college_ug" type="text" name="College/Institute, City" onchange="ugCollegeChange()"><br>
+                        <p class='p-instruction'>Start typing few words of institute name to select from the suggestions.</p> 
+                        <!--TODO: Add auto suggest to collage name input field-->             
+                    </div>
+                    <div>
+                        <label for="ug_type">Course:</label>
+                        <select class="ug_type" id="ug_type" onchange='ugCourseChange()'> 
+                            <option value="" selected>Select Course</option>
+                            <option value="B.Com">B.Com</option>
+                            <option value="B.A.">B.A.</option>
+                            <option value="B.Arch">B.Arch</option>
+                            <option value="B.Des">B.Des</option>                    
+                            <option value="B.Ed">B.Ed</option>
+                            <option value="B.Pharma">B.Pharma</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="B.Tourism">B.Tourism</option>                    
+                            <option value="BBA/BBM/BBS">BBA/BBM/BBS</option>
+                            <option value="BCA/BCM">BCA/BCM</option>
+                            <option value="BDS">BDS</option>
+                            <option value="BE/B.Tech">BE/B.Tech</option>
+                            <option value="BFA">BFA</option>
+                            <option value="BHM">BHM</option>
+                            <option value="BJMC">BJMC</option>
+                            <option value="BVSc">BVSc</option>                   
+                            <option value="Diploma">Diploma</option>
+                            <option value="LLB">LLB</option>
+                            <option value="MBBS">MBBS</option>
+                            <option value="others">others</optiion>
+                        </select>
+                    </div>
+                    <div>
+                        <label for='specilization-ug'>Specilization:</label>
+                        <select class='specilization-ug' id="sp_ug" onchange="ugSpecilizationChange()">
+                            <option value='' name=''>Select</option>
+                            <option value='Medicine' name=''>Medicine</option>
+                            <option value='Machanical' name=''>Machanical</option>
+                            <option value='Information Technology' name=''>Information Technology</option>
+                            <!--2. TODO Specilization data from js-->
+                        </select>
+                    </div>
+                    <div>
+                        <label for='ug-time'>Year of Passing:</label>
+                        <div class='ug-time in-line'>
+                            <select id="ug_time_month" onchange="monthofUGCompleteChange()">
+                                <option value="" selected>Month</option>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+                            <select class="year_ug" id="ug_time_year" onchange="yearofUGCompleteChange()">
+                                <option value="" selected>Year</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </div>
+                        <p class='p-instruction'>If pursuing enter expected date of graduation. </p>
+                    </div>
+                    <div>
+                        <label for="grading_scheme_ug">Grading System:</label>
+                        <select class="grading_scheme_ug" id="grad_sch_ug">
+                            <option value="" selected>Select</option>
+                            <option value="Scale 10 Grading System">Scale 10 Grading System</option>
+                            <option value="Scale 4 Grading System">Scale 4 Grading System</option>
+                            <option value="%Marks of 100 Maximum">%Marks of 100 Maximum</option>
+                            <option value="Course Requires a Pass">Course Requires a Pass</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="marks_ug">Grade/Marks:</label>
+                        <input id="ug_marks" class="marks_ug" type="number" step="0.0001" min="0" max="10" onchange="gradeMarksUGChange()">
+                    </div>
+                    <div>
+                        <label for="achievement_ug">Academic Achievements:</label>
+                        <select class="achievement_ug" id="ach_ug" onchange="academicAchievementinUGChange()">
+                            <option value="" selected>Select</option>
+                            <option value="College Topper">College Topper</option>
+                            <option value="Department Topper">Department Topper</option>                    
+                            <option value="School Topper">School Topper</option>
+                            <option value="Top 3 in Class">Top 3 in Class</option>
+                            <option value="Top 10 in Class">Top 10 in Class</option>
+                            <option value="Gold Medalist">Gold Medalist</option>
+                            <option value="Recieved Scholarship">Recieved Scholarship</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='solid-border'>
+                    <!--Class 12-->
+                    <div class='class12 dotted-border'>
+                        <label class='class-align'>Class XII</label><br>
+                        <div class='in-line'>
+                            <select id="12_board" onchange="class12BoardChange()">
+                                <option value="" selected>Board/Diploma</option>
+                                <option value="CBSE">CBSE</option>
+                                <option value="ICSE">ICSC</option>
+                                <option value="State Board">State Board</option>
+                            </select>
+                        </div>
+                        <div class='in-line'>
+                            <input  id='12_marks' class='class12-marks' type='number' name='class12-marks' placeholder="Marks(%)" onchange="class12MarksChange()">
+                        </div>
+                        <div class='in-line'>
+                            <select class='passout-year' id='12_year' onchange="class12PassingYearChange()">
+                                <option value="" selected>Year</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class='in-line'>
+                            <select id="12_medium" onchange="class12BoardChange()">
+                                <option value="" selected>Medium</option>
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Punjabi">Punjabi</option>
+                                <!--TODO: use JS to display all mediums-->
+                            </select>
+                        </div>
+                        <div class='in-line'>
+                            <input id="12_maths_marks" class="marks_math" type="number" step="0.01" min="0" max="100" placeholder="Maths Marks" onchange="class12MathsMarksChange()">
+                        </div>
+                        <div class='in-line'>
+                            <input id="12_english_marks" class="marks_english" type="number" step="0.01" min="0" max="100" placeholder="English Marks" onchange="class12EnglishMarksChange()">
+                        </div>
+                    </div>
+                    <!--Class 10-->
+                    <div class='class10 dotted-border'>
+                        <label class='class-align'>Class X</label><br>
+                        <div class='in-line'>  
+                            <select class="10th" id="10_board" onchange="class10BoardChange()">
+                                <option value="" selected>Board</option>
+                                <option value="CBSE">CBSE</option>
+                                <option value="ICSE">ICSC</option>
+                                <option value="State Board">State Board</option>
+                            </select>
+                        </div>
+                        <div class='in-line'>
+                            <input id="10_marks" type='number' name='class10-marks' placeholder="Marks(%)/Grade(CGPA)" onchange="class10MarksChange()">
+                        </div>
+                        <br>
+                        <div class='in-line'>
+                            <select class='passout-year' id='10_year' onchange="class10PassingYearChange()">
+                                <option value=""  selected>Year</option>
+                            </select>
+                        </div>
+                        <div class='in-line'>
+                            <select id="10_medium" onchange="class10MediumChange()">
+                                <option value="" selected>Medium</option>
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Punjabi">Punjabi</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--Certificates and courses-->
+                <div class='solid-border'>
+                    <div>
+                        <label>Certificate and Courses:</label>
+                        <select id="certi_course" onchange="certificateandCoursesChange()">
+                            <option value="" selected>Select</option>
+                            <option value="ML">ML</option>
+                            <option value="Blockchain">Blockchain</option>
+                            <option value="Big Data">Big Data</option>
+                            <option value="React">React</option>
+                        <!--4.TODO Courses from arrey in js-->
+                        </select>
+                    </div>
+                    <div class='in-line'>
+                        <label for="">Duration:</label>
+                        <div class='course-duration in-line'>
+                            <div class='in-line'>
+                                <select id="course-time-year" onchange="durationofCourseChange()">
+                                    <option value="" selected>Years</option> 
+                                    <!--TODO: 0 to 20 using js-->
+                                </select>
+                            </div>
+                            <div class='in-line'>
+                                <select id='course-time-month' onchange="durationofCourseChange()">
+                                    <option value=""  selected>Months</option>
+                                    <!--6.TODO range 0 to 11-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Work Preference-->
+                <div class='solid-border'>
+                    <h4>Work Preference</h4>
+                    <hr class='hr-solid'/>
+                    <div>
+                        <label for="job_preference">Specify your preference for:</label><br>
+                        <form class="job_preference in-line" onchange="workPreferenceChange()">
+                            <label class="rb-container">
+                            <input type="radio" checked="checked" name="radio" id="wp_fulltime">FullTime
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="wp_parttime">Part Time
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="wp_internship">Internship
+                            <span class="checkmark"></span>
+                            </label>
+                            <!--
+                            <input type="radio" name="job_pref" value="Full Time" unchecked>Full Time
+                            <input type="radio" name="job_pref" value="Part Time" unchecked>Part Time
+                            <input type="radio" name="job_pref" value="Internship" unchecked>Internship
+                            -->
+                        </form>
+                    </div>
+                    <div>
+                        <label>When can you start working?:</label><br>
+                        <form onchange="startWorkingChange()">
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="wp_immediately" checked onClick="hideTime()">Immediately 
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="wp_provide_time" onClick="showTime()">
+                            <span class="checkmark"></span>
+                            </label>
+                            <!--
+                            <input type="radio" name="joining-immediately" value="immediately" unchecked>Immediately 
+                            <input type="radio" name="joining-provide-time" value="provide-time" unchecked>
+                            -->
+                            <select class='joining-month' id="wp_joining_month" onchange="startWorkingChange()">
+                                <option value=""  selected>Month</option>
+                                <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
+                                <option value="Mar">Mar</option>
+                                <option value="Apr">Apr</option>
+                                <option value="May">May</option>
+                                <option value="Jun">Jun</option>
+                                <option value="Jul">Jul</option>
+                                <option value="Aug">Aug</option>
+                                <option value="Sep">Sep</option>
+                                <option value="Oct">Oct</option>
+                                <option value="Nov">Nov</option>
+                                <option value="Dec">Dec</option>
+                            </select>
+                            <select class='joining-year' id="wp_joining_year" onchange="startWorkingChange()">
+                                <option value=""  selected>Year</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                            </select>     
+                        </form>
+                    </div>
+                    <div>
+                        <label class="pre_loc" for="location">Prefered Location:</label>
+                        <select class="location" size="4" id="prefered_location" onchange="preferedLocationChange()">
+                            <option value="Anywhere in India" selected>Anywhere in India</option>
+                            <option value="West India">West India</option>
+                            <option value="East India">East India</option>
+                            <option value="South India">South India</option>
+                            <option value="North India">North India</option>
+                            <option value="Gulf Region">Gulf Region</option>
+                            <option value="Abroad">Abroad</option>
+                            <!--TODO: checkbox inside select-->
+                        </select>
+                        <p class='p-instruction'>You may select up to 10 locations. The locations specified will be used to filter jobs matching your profile</p>
+                    </div>
+                </div>
+                <!--Personal Details-->
+                <div class='solid-border'>
+                    <h4>Personal Details</h4>
+                    <hr class='hr-solid'/>
+                    <div>
+                        <label for="name">Name:</label>
+                        <input class="name" type="text" name="name" id="name" onchange="nameChange()">
+                    </div>
+                    <div>
+                        <label for="gender">Gender:</label>
+                        <form class="gender in-line" onchange="genderChange()">
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="gender_female">Female
+                            <span class="checkmark"></span>
+                            </label>
+                            <label class="rb-container">
+                            <input type="radio" name="radio" id="gender_male">Male
+                            <span class="checkmark"></span>
+                            </label>
+                            <!--
+                            <input type="radio" name="gender" value="Female" unchecked>Female
+                            <input type="radio" name="gender" value="Male" unchecked>Male
+                            <input type="radio" name="gender" value="Other" unchecked>I am not Binary
+                            -->
+                        </form>
+                    </div>
+                    <div>
+                        <label for="dob">Date of Birth:</label>
+                        <input id="dob" class="dob" type="date" name="bday" onchange="dobChange()"><br>
+                    </div>
+                    <div>
+                        <label for="contact" style="color: rgb(39, 35, 35)">Contact Numbers:</label><br>
+                        <div class="contact">
+                            <label for="mob">Mobile:</label>
+                            <input id="mobile" class="mob" type="number" name="mob" step="1" min="1111111111" max="9999999999" onchange="mobileChange()"><br>
+                            <div>
+                                <label for="tel">Phone:</label>
+                                <input id="std" type="number" name="std" step="1" placeholder="STD code" onchange="telephoneChange()">
+                                <input id="telephone" type="number" name="tel" step="1" placeholder="Telephone No."  onchange="telephoneChange()">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="city">Current Location:</label>
+                        <select onchange="print_city('cl_state', this.selectedIndex);" id="cl_sts" name ="cl_stt" class="form-control" required onchange="currentStateChange()"><option value="" selected>Selected</option></select>
+                        <select id ="cl_state" class="form-control" required onchange="currentCityChange()"><option value="" selected>Selected</option></select>
+                        <script language="javascript">print_state("cl_sts");</script>
+                    </div>
+                    <div>
+                        <label for="hometown">Hometown:</label>
+                        <select onchange="print_city('h_state', this.selectedIndex);" id="h_sts" name ="h_stt" class="form-control" required onchange="homeStateChange()"><option value="" selected>Selected</option></select>
+                        <select id ="h_state" class="form-control" required onchange="homeCityChange()"><option value="" selected>Selected</option></select>
+                        <script language="javascript">print_state("h_sts");</script>
+                    </div>
+                </div>
+                <!--Mailers Settings-->
+                <div>
+                    <h4>Mailer Setting</h4>
+                    <hr class='hr-solid'/>
+                    <p class='mailer-paragraph'>Firstnaukri.com will send newsletters and tips from time to time. Please choose the mailers that you wish to receive.</p>
+                    <div class='mailer'>
+                        <form>
+                            <input id="mailer_option1" type="checkbox" name="option1" value="jpAlerts" onchange="servicesChange()">Job Alerts and Products Updates<br>
+                            <input id="mailer_option2" type="checkbox" name="option2" value="vAlerts" onchange="servicesChange()">Automated Voice Alerts<br>
+                            <input id="mailer_option3" type="checkbox" name="option3" value="conRecruiters" onchange="servicesChange()">SMS Contacts by Recruiters<br>
+                            <input id="mailer_option4" type="checkbox" name="option4" value="mpsNaukri" onchange="servicesChange()">Mails from Partner Sites of firstnaukri.com<br>
+                            <input id="mailer_option5" type="checkbox" name="option5" value="psOffers" onchange="servicesChange()">Other Promotional and Special Offers<br>
+                        </form>
+                    </div>
+                    <p class='mailer-paragraph'>Save and proceed to upload photo, video profile & scanned mark sheets to increase your chances of getting hired!</p>
+                    <div class='mailer'>
+                        <form>
+                            <input type="checkbox" name="termsandconditions" value="terms">I have read and I agree to the <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/termsAndConditions">terms and conditions</a> governing the use of firstnaukri.com<br>     
+                        </form>
+                    </div>
+                </div>
+                <!--Submit Button-->
+                <div style="margin: 2% 0 auto;">
+                    <button class='button-shadow button' onClick="submitForm()">Submit</button>
+                </div>
+            </div>
+            <!--bullets points-->
+            <div>
+    
+            </div>
+        </div>
+        <!--footer links-->
+        <footer>
+            <div class='footer-links'>
+                <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/aboutUs">About Us</a><nobr>|</nobr>
+                <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/contactUs">Contact Us</a><nobr>|</nobr>
+                <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/termsAndConditions">Terms and Conditions</a><nobr>|</nobr>
+                <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/privacyPolicy">Privacy Policy</a><nobr>|</nobr>
+                <a href="https://www.firstnaukri.com/freshersmnj/mynaukri.php/Show/grievances">Grievances</a>
+                <p>All rights reserved © 2019 Info Edge (India) Ltd.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="root"></div>
+
+    <!--Scripts-->
+    <script src="./j/year.js"></script>
+    <script src="./j/educationLevel.js"></script>
+    <script src="./j/submitForm.js"></script>
+    <script src="./j/workTimePreference.js"></script>
+    <script src="./j/makeChange.js"></script>
+    <!--
+        <script src="../j/editJson.js"></script>
+    -->
+</body>
+    
+</html>
